@@ -1,0 +1,7 @@
+inc
+inc
+inc
+begin
+inc
+end
+print
