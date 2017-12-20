@@ -41,6 +41,7 @@ int main(int argc, char *argv[])
     charlist *ptr=0;
     listline *line=0;
 
+    /*Open the file with the commands*/
     if (argc > 1){
         if ((file = fopen(argv[1], "r")) == 0){
             printf ("Enter correct file name!\n");
@@ -70,6 +71,7 @@ int main(int argc, char *argv[])
     c = commands;
     ptr = line->head;
 
+    /*Execute the commands that are in the array*/
     while (f){
         switch (*c){
         case INC:{
@@ -146,6 +148,7 @@ int main(int argc, char *argv[])
     return 0;
 }
 
+/*Walking through the array*/
 charlist* getptr(listline *mlist, charlist *list, int dir){
     if (dir == MOVR){
         if (list->next == 0){
@@ -163,6 +166,7 @@ charlist* getptr(listline *mlist, charlist *list, int dir){
     return 0;
 }
 
+/*Transfer of commands from a file into an array*/
 char *GetCommands(FILE *file){
     char c, *commands = 0, temp[256];
     int i, j, f = 0, len = 0;
@@ -227,6 +231,7 @@ char *GetCommands(FILE *file){
     return commands;
 }
 
+/*The creation of line*/
 listline * CreateListLine(){
     listline *temp = (listline*)malloc(sizeof(listline));
     temp->len = 0;
@@ -234,6 +239,7 @@ listline * CreateListLine(){
     return temp;
 }
 
+/*Insert element at the end*/
 void PushBack(listline *list, unsigned char c){
     charlist *temp = (charlist*)malloc(sizeof(charlist));
     if (temp == 0)exit(1);
@@ -250,6 +256,7 @@ void PushBack(listline *list, unsigned char c){
     ++list->len;
 }
 
+/*Insert element at the beginning*/
 void PushFront(listline *list, unsigned char c){
     charlist *temp = (charlist*)malloc(sizeof(charlist));
     if (temp == 0) exit(1);
@@ -262,6 +269,7 @@ void PushFront(listline *list, unsigned char c){
     ++list->len;
 }
 
+/*Returns the value of the element from the begining*/
 unsigned char PopFront(listline *list){
     unsigned char c;
     charlist *prev;
@@ -286,6 +294,7 @@ unsigned char PopFront(listline *list){
     return c;
 }
 
+/*Returns the value of the element from the end*/
 unsigned char PopBack(listline *list){
     unsigned char c;
     charlist *next;
